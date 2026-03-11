@@ -81,7 +81,7 @@ Fake_News_Detector
 ![Fake Prediction](screenshots/fake_news_prediction.png)
 
 # Real News Prediction
-![Real Prediction](screenshots/real_news_prediction.png)
+![Real Prediction](screenshots/Real_news_prediction.png)
 
 # Batch News Detection
 ![Batch Detection](screenshots/batch_detection.png)
