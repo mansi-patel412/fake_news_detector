@@ -50,20 +50,7 @@ The system uses Natural Language Processing techniques to analyze news text.
 
 📂 Project Structure
 
-Fake_News_Detector
-│
-├── app.py
-├── train_model.py
-├── prepare_dataset.py
-├── requirements.txt
-├── README.md
-├── .gitignore
-│
-└── screenshots
-    ├── app_full_page.png
-    ├── batch_detection.png
-    ├── fake_news_prediction.png
-    └── real_news_prediction.png
+Fake_News_Detector │ ├── app.py ├── train_model.py ├── prepare_dataset.py ├── requirements.txt ├── README.md ├── .gitignore │ ├── model │ ├── fake_news_model.pkl │ └── vectorizer.pkl │ └── screenshots ├── app_full_page.png ├── batch_detection.png ├── fake_news_prediction.png └── real_news_prediction.png
 
 📸 Application Screenshots
 
