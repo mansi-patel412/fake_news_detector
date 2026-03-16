@@ -14,30 +14,38 @@ st.set_page_config(
 model = pickle.load(open("model/fake_news_model.pkl", "rb"))
 vectorizer = pickle.load(open("model/vectorizer.pkl", "rb"))
 
+# ===============================
 # Sidebar
+# ===============================
+
 st.sidebar.title("📌 Project Information")
 
-st.sidebar.write("""
-Fake News Detection System
+st.sidebar.markdown("""
+### Fake News Detection System
 
-Model: Logistic Regression  
-Vectorization: TF-IDF  
-Dataset Size: 44,000+ news articles
+**Algorithm:** Logistic Regression  
+**Vectorization:** TF-IDF  
+**Dataset Size:** 44,000+ news articles  
+
+This system classifies news articles as **Real** or **Fake** using Machine Learning.
 """)
 
-st.sidebar.write("Developed using Python, Scikit-learn, and Streamlit")
 
-# Title
+# ===============================
+# Main Title
+# ===============================
+
 st.title("📰 Fake News Detection System")
 
 st.markdown("""
 This application uses **Machine Learning and Natural Language Processing (NLP)**  
-to classify news articles as **REAL** or **FAKE**.
+to detect whether a news article is **REAL** or **FAKE**.
 
-You can:
-
-• Enter news text manually  
-• Upload a CSV file for batch prediction
+### Features
+- 🔎 Single news detection  
+- 📂 Batch news detection (CSV upload)  
+- 📊 Prediction probability visualization  
+- 📥 Download prediction results
 """)
 
 st.markdown("---")
@@ -53,7 +61,7 @@ news_text = st.text_area("Enter News Text")
 if st.button("Check News"):
 
     if news_text.strip() == "":
-        st.warning("Please enter some news text.")
+        st.warning("⚠ Please enter some news text.")
 
     else:
 
@@ -65,10 +73,10 @@ if st.button("Check News"):
         fake_prob = prob[0] * 100
         real_prob = prob[1] * 100
 
-        st.markdown("### 🤖 AI Analysis Result")
+        st.markdown("### 🤖 AI Prediction Result")
 
         if prediction[0] == 0:
-            st.error("⚠️ FAKE NEWS DETECTED")
+            st.error("🚨 FAKE NEWS DETECTED")
         else:
             st.success("✅ REAL NEWS DETECTED")
 
@@ -78,9 +86,9 @@ if st.button("Check News"):
         col1.metric("Fake Probability", f"{fake_prob:.2f}%")
         col2.metric("Real Probability", f"{real_prob:.2f}%")
 
-        # Progress bar
         confidence = max(fake_prob, real_prob)
-        st.write(f"Confidence Score: {confidence:.2f}%")
+
+        st.write(f"Confidence Score: **{confidence:.2f}%**")
         st.progress(int(confidence))
 
         # Probability Chart
@@ -88,7 +96,10 @@ if st.button("Check News"):
         values = [fake_prob, real_prob]
 
         fig, ax = plt.subplots()
-        ax.bar(labels, values)
+
+        colors = ["red", "green"]
+
+        ax.bar(labels, values, color=colors)
         ax.set_ylabel("Probability (%)")
         ax.set_title("Prediction Confidence")
 
@@ -103,7 +114,7 @@ st.markdown("---")
 st.header("📂 Batch News Detection (CSV Upload)")
 
 uploaded_file = st.file_uploader(
-    "Upload CSV file containing a 'text' column",
+    "Upload CSV file containing a column named 'text'",
     type=["csv"]
 )
 
@@ -111,7 +122,7 @@ if uploaded_file is not None:
 
     df = pd.read_csv(uploaded_file)
 
-    st.subheader("📄 Uploaded Data")
+    st.subheader("📄 Uploaded Data Preview")
     st.dataframe(df.head())
 
     if "text" in df.columns:
@@ -137,7 +148,15 @@ if uploaded_file is not None:
         )
 
     else:
-        st.error("CSV file must contain a column named 'text'.")
+        st.error("❌ CSV file must contain a column named 'text'.")
 
 st.markdown("---")
 
+st.markdown(
+"""
+<center>
+Developed as a Machine Learning project using Streamlit
+</center>
+""",
+unsafe_allow_html=True
+)
