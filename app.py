@@ -14,9 +14,8 @@ st.set_page_config(
 model = pickle.load(open("model/fake_news_model.pkl", "rb"))
 vectorizer = pickle.load(open("model/vectorizer.pkl", "rb"))
 
-# ===============================
 # Sidebar
-# ===============================
+
 
 st.sidebar.title("📌 Project Information")
 
@@ -30,10 +29,7 @@ st.sidebar.markdown("""
 This system classifies news articles as **Real** or **Fake** using Machine Learning.
 """)
 
-
-# ===============================
 # Main Title
-# ===============================
 
 st.title("📰 Fake News Detection System")
 
@@ -50,9 +46,7 @@ to detect whether a news article is **REAL** or **FAKE**.
 
 st.markdown("---")
 
-# ===============================
 # Single News Detection
-# ===============================
 
 st.header("🔎 Single News Detection")
 
@@ -107,9 +101,7 @@ if st.button("Check News"):
 
 st.markdown("---")
 
-# ===============================
 # Batch News Detection
-# ===============================
 
 st.header("📂 Batch News Detection (CSV Upload)")
 
